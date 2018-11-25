@@ -54,5 +54,4 @@ elseif algorithm_type == 2
         end
     end
 end
-
 end
