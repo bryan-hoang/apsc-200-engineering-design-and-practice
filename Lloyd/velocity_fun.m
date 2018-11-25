@@ -44,7 +44,7 @@ elseif algorithm_type == 2
         delta_x = direction_Vector(1)/sqrt(direction_Vector(1)^2+direction_Vector(2)^2)*velocity;
         delta_y = direction_Vector(2)/sqrt(direction_Vector(1)^2+direction_Vector(2)^2)*velocity;
     elseif Velocity_Type == 2 % Make velocity proportional to density?
-        delta_x = direction_Vector(1)*MASS; % 
+        delta_x = direction_Vector(1)*MASS; % Change what it's proportional to
         delta_y = direction_Vector(2)*MASS; % 
         if(sqrt(delta_x^2 + delta_y^2) > max_velocity) % max velocity has been exceeded
             direction_Vector(1) = direction_Vector(1)/(sqrt(direction_Vector(1)^2+direction_Vector(2)^2));
