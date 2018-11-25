@@ -52,4 +52,5 @@ for i = 1 : n
     E(i) = E(i) - ((1/2)*m*(delta_x^2+delta_y^2)*(1/time_unit^2)*space_unit)/energy_of_agents; % Decreasing energy of agents after they move
 end
 distance_travelled = horzcat(distance_travelled, total_distance);
+    % HI THIS IS ANASTASIA TESTING COMMENT GIT
 end
