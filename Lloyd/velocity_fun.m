@@ -1,5 +1,5 @@
 function [delta_x, delta_y] = velocity_fun(Velocity_Type,direction_Vector,...
-    velocity,max_velocity,MOVEMENTSCALE,algorithm_type,MASS)
+    velocity,max_velocity,MOVEMENTSCALE,algorithm_type,MASS) % Pass in MASS
 % Velocity Types:
 % 1: Constant Velocity determined in GUI.
 % 2: Velocity is proportional to distance between agent and centroid.
