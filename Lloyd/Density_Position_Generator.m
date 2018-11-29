@@ -2,7 +2,7 @@ function [Agent_Positions, Density] = Density_Position_Generator(...
     Number_of_Robots, Density_Type,sides, Partition_Number)
 
 % Binary density or no? I would say yes.
-syms x y z;
+syms x y;
 % Symbolic function in terms of x and y
 if Density_Type == 1
     Density = rand()*x^(randi(20,1,1))+rand()*y^(randi(21,1,1));
@@ -13,7 +13,7 @@ elseif Density_Type == 2
         for j = 1:(Partition_Number*sides)
             Density(i,j) = randi([0,100],1);
             % Binary Density
-%             Density(i,j) = randi([0,1],1);
+            % Density(i,j) = randi([0,1],1);
         end
     end
 end
