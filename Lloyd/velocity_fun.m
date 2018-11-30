@@ -43,11 +43,11 @@ function [delta_x, delta_y] = velocity_fun(Velocity_Type,direction_Vector,...
             end
             delta_x = direction_Vector(1)/sqrt(direction_Vector(1)^2+direction_Vector(2)^2)*velocity;
             delta_y = direction_Vector(2)/sqrt(direction_Vector(1)^2+direction_Vector(2)^2)*velocity;
-            % Proportional Velocity
+            %% Proportional Velocity
         elseif Velocity_Type == 2
-            delta_x = direction_Vector(1)*MOVEMENTSCALE; % Change what it's proportional to
-            delta_y = direction_Vector(2)*MOVEMENTSCALE;
-            if(sqrt(delta_x^2 + delta_y^2) > max_velocity) % max velocity has been exceeded
+            delta_x = direction_Vector(1) * MOVEMENTSCALE; % Change what it's proportional to?
+            delta_y = direction_Vector(2) * MOVEMENTSCALE;
+            if(sqrt(delta_x^2 + delta_y^2) > max_velocity) % M ax velocity has been exceeded
                 direction_Vector(1) = direction_Vector(1)/(sqrt(direction_Vector(1)^2+direction_Vector(2)^2));
                 direction_Vector(2) = direction_Vector(2)/(sqrt(direction_Vector(1)^2+direction_Vector(2)^2));
                 delta_x = direction_Vector(1)*max_velocity;
@@ -55,4 +55,5 @@ function [delta_x, delta_y] = velocity_fun(Velocity_Type,direction_Vector,...
             end
         end
     end
+    
 end

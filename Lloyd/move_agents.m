@@ -20,7 +20,7 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
     % Using a MOVEMENTSCALE of around 1.8 will usually cause the algorithm to
     % converge the fastest, but for the purposes of this project having a
     % MOVEMENTSCALE greater than 1 may be unrealistic.
-    %
+    
     % E: energy content of agents in percentage
     %
     %% Used for Energy example
@@ -36,7 +36,7 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
     
     for i = 1 : n
         direction = [centroids(i,1) - agentPositions(i,1), centroids(i,2) - agentPositions(i,2)];
-        % Normalize Direction Vectors
+        % Normalize Direction Vectors?
 %         direction = [centroids(i,1) - agentPositions(i,1), centroids(i,2) - agentPositions(i,2)] /...
 %             sqrt((centroids(i,1) - agentPositions(i,1))^2 + (centroids(i,2) - agentPositions(i,2))^2);
 %         disp(direction);
@@ -45,6 +45,9 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
             max_velocity,MOVEMENTSCALE,algorithm_type,Mass(i));
         
         total_distance = total_distance + sqrt(delta_x^2 + delta_y^2);
+        
+        %% May need to add a way for agents to not exceed the arena's boundaries
+        % Pass in Length of Arena and Partitions
         agentPositions(i,1) = agentPositions(i,1) + delta_x;
         agentPositions(i,2) = agentPositions(i,2) + delta_y;
         E(i) = E(i) - ((1/2)*m*(delta_x^2+delta_y^2)*(1/time_unit^2)*space_unit)/energy_of_agents; % Decreasing energy of agents after they move
@@ -52,4 +55,7 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
     
     distance_travelled = horzcat(distance_travelled, total_distance);
     % HI THIS IS ANASTASIA TESTING COMMENT GIT
+    % HI ANASTASIA, THIS IS BRYAN. I HAVE NOTHING RELEVANT TO ADD TO THIS
+    % COMMENT
+    
 end

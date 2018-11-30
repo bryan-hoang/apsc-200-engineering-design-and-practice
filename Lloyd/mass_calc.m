@@ -18,9 +18,5 @@ function Mass = mass_calc(Agent_Points, Density, Number_of_Robots,Partition_Numb
             end
         end
     end
+    
 end
-
-
-
-
-

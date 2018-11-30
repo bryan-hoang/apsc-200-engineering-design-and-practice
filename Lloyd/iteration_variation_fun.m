@@ -31,14 +31,22 @@ function Density = iteration_variation_fun(Density,iteration_number,delay,...
                 x = i/Partition_Number;
                 y = j/Partition_Number;
                 %%%%% This is where you put your custom function!%%%%
+                
                 %% Internal Density change due to agents
+                
                 check = 0;
+
                 for k = 1:size(Agent_Positions,1)
-                    if (x - Agent_Positions(k,1))^2 + (y - Agent_Positions(k,2))^2 <= (r_o/3)^2 &&...
-                       check == 0
-                       
-                        Density(i,j) = Density(i,j)/1.1; 
-                        % This will halve the density if an agent is covering it
+                    
+                    % For all density values within a portion of the agent's
+                    % radius of observation, update the density values
+                    
+                    if (x - Agent_Positions(k,1))^2 + (y - Agent_Positions(k,2))^2 <= (r_o/4)^2 &&...
+                            check == 0
+                        
+                        % Decrease the density around the agent
+                        Density(i,j) = Density(i,j)/2;
+                        
                         % Note that only one agent at a time can cover the density
                         if Density(i,j) < 0
                             Density(i,j) = 0;
@@ -47,7 +55,7 @@ function Density = iteration_variation_fun(Density,iteration_number,delay,...
                     end
 %                     if (x - Agent_Positions(k,1))^2 + (y - Agent_Positions(k,2))^2 <= r_o^2 && check == 0
 %                         
-%                         Density(i,j) = Density(i,j) - Density(i,j)/size(Agent_Positions,1); 
+%                         Density(i,j) = Density(i,j) - Density(i,j)/size(Agent_Positions,1);
 %                         % This will halve the density if an agent is covering it
 %                         % Note that only one agent at a time can cover the density
 %                         if Density(i,j) < 0
@@ -57,7 +65,7 @@ function Density = iteration_variation_fun(Density,iteration_number,delay,...
 %                     end
 %                     if (x - Agent_Positions(k,1))^2 + (y - Agent_Positions(k,2))^2 <= r_o^2 && check == 0
 %                         
-%                         Density(i,j) = Density(i,j) - Density(i,j)/size(Agent_Positions,1); 
+%                         Density(i,j) = Density(i,j) - Density(i,j)/size(Agent_Positions,1);
 %                         % This will halve the density if an agent is covering it
 %                         % Note that only one agent at a time can cover the density
 %                         if Density(i,j) < 0
@@ -77,3 +85,5 @@ function Density = iteration_variation_fun(Density,iteration_number,delay,...
             end
         end
     end
+    
+end
