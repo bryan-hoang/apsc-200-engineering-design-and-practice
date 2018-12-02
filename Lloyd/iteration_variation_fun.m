@@ -40,7 +40,7 @@ function Density = iteration_variation_fun(Density,iteration_number,delay,...
                     
                     % For all density values within a portion of the agent's
                     % radius of observation, update the density values
-                    
+                    % TODO: Change radius of density change around agents
                     if (x - Agent_Positions(k,1))^2 + (y - Agent_Positions(k,2))^2 <= (r_o/4)^2 &&...
                             check == 0
                         
