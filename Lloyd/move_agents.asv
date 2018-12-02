@@ -51,8 +51,10 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
         if (delta_x < 0.2) && (delta_y < 0.2)
             delta_x = (5).*rand(1,1)-2.5;
             delta_y = (5).*rand(1,1)-2.5;
+            fprintf("GOT HERE! \n");
         end
-
+        fprintf("Delta x is %d ", delta_x);
+        fprintf("Delta y is %d\n", delta_y);
         agentPositions(i,1) = agentPositions(i,1) + delta_x;
         agentPositions(i,2) = agentPositions(i,2) + delta_y;
         
