@@ -26,13 +26,18 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
     %% Used for Energy example
     % The energy will be decreased using the energy after one iteration being
     % E_(i+1) = E_i - (1/2)*m*v^2
-    m = 1.0; % Physical mass of agents
-    time_unit = 30; %30 seconds per iteration
-    space_unit = 0.1; % 10 cm per space unit
-    energy_of_agents = 100; % Total energy in Joules of a 9V battery
-
+    %%
+    %     m = 1.0; % Physical mass of agents
+    %     time_unit = 30; %30 seconds per iteration
+    %     space_unit = 0.1; % 10 cm per space unit
+    
+    max_energy_of_agents = 100; % Total energy in Joules of a 9V battery
+    
+    wait_time = 2
+    
     if (count <= 2)
-        E(:) = energy_of_agents;
+        E(:) = max_energy_of_agents;
+        charged_counter(:) = wait_time;
     end
     
     n = size(agentPositions,1); % Find number of agents
@@ -40,7 +45,7 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
     
     for i = 1 : n
         direction = [centroids(i,1) - agentPositions(i,1), centroids(i,2) - agentPositions(i,2)];
-
+        
         [delta_x, delta_y] = velocity_fun(Velocity_Type,direction,velocity,...
             max_velocity,MOVEMENTSCALE,algorithm_type,Mass(i));
         
@@ -51,24 +56,27 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
         if (delta_x < 0.2) && (delta_y < 0.2)
             delta_x = (5).*rand(1,1)-2.5;
             delta_y = (5).*rand(1,1)-2.5;
-            fprintf("GOT HERE! \n");
         end
-        fprintf("Delta x is %d ", delta_x);
-        fprintf("Delta y is %d\n", delta_y);
-        agentPositions(i,1) = agentPositions(i,1) + delta_x;
-        agentPositions(i,2) = agentPositions(i,2) + delta_y;
         
-       % E(i) = E(i) - 5;
-        E(i) = E(i) -1- (delta_x^2+delta_y^2); % Decreasing energy of agents after they move
+        if charged_counter(i) <= 2
+            agentPositions(i,1) = agentPositions(i,1) + delta_x;
+            agentPositions(i,2) = agentPositions(i,2) + delta_y;
+        end
+        
+        % Constant decrease of battery life for agents with addtional loss
+        % that's proportional to the sqyure of the velocity of the agents
+        E(i) = E(i) - 1 - (delta_x^2+delta_y^2); % Decreasing energy of agents after they move
         fprintf("Energy: %d\n", E(i));
         if (E(i) <= 10)
+            charged_counter(i) = 0;
+            E(i) = max_energy_of_agents;
+            
             agentPositions(i,1) = 50*((.51-.49)*rand+.49);
             agentPositions(i,2) = 50*((.51-.49)*rand+.49);
-            E(i) = 100; 
         end
     end
     
     distance_travelled = horzcat(distance_travelled, total_distance);
-
+    
     
 end
