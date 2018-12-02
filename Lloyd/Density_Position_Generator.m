@@ -17,7 +17,7 @@ function [Agent_Positions, Density] = Density_Position_Generator(...
             for j = 1:(Partition_Number*sides)
                 % Generate Random matrix of non negative density values
                 % Binary Density
-                Density(i,j) = randi([0,1],1);
+                %Density(i,j) = randi([0,1],1);
                 Density(i,j) = 0;
                 %% CITY LAYOUT (GRID)
                 %                  for w = 1:20:sides*Partition_Number

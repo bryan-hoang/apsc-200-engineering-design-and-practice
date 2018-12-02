@@ -52,8 +52,25 @@ function [agentPositions,distance_travelled,E, charged_counter] = move_agents(ag
             delta_y = 0;
         end
         if (delta_x < 0.1) && (delta_y < 0.1) && (charged_counter(i) == 3)
-            delta_x = (5).*rand(1,1)-2.5;
-            delta_y = (5).*rand(1,1)-2.5;
+            if agentPositions(i,1) <= 25
+                delta_x = (-2)*rand(1,1);
+                fprintf('delta_x = %d\n',delta_x);
+            else
+                delta_x = 2*rand(1,1);
+                fprintf('delta_x = %d\n',delta_x);
+            end
+            if agentPositions(i,2) <= 25
+                delta_y = (-2)*rand(1,1);
+                fprintf('delta_y = %d\n',delta_y);
+            else
+                delta_y = 2*rand(1,1);
+                fprintf('delta_y = %d\n',delta_y);
+            end            
+            
+            %delta_x = (5).*rand(1,1)-2.5;
+            %delta_y = (5).*rand(1,1)-2.5;
+            %delta_x = delta_x.*3;
+            %delta_y = delta_y.*3;
         end
         
         agentPositions(i,1) = agentPositions(i,1) + delta_x;
