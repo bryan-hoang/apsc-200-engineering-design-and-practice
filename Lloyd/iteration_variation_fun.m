@@ -45,7 +45,7 @@ function Density = iteration_variation_fun(Density,iteration_number,delay,...
                             check == 0
                         
                         % Decrease the density around the agent
-                        Density(i,j) = Density(i,j)/2;
+                        Density(i,j) = Density(i,j)-1;
                         
                         % Note that only one agent at a time can cover the density
                         if Density(i,j) < 0

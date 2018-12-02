@@ -43,6 +43,10 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
         % Update velocity
         [delta_x, delta_y] = velocity_fun(Velocity_Type,direction,velocity,...
             max_velocity,MOVEMENTSCALE,algorithm_type,Mass(i));
+        if sqrt(delta_x^2 + delta_y^2) < 0.2
+            delta_x = randi([-1,1]);
+            delta_y = randi([-1,1]);
+        end
         
         total_distance = total_distance + sqrt(delta_x^2 + delta_y^2);
         
@@ -50,10 +54,15 @@ function [agentPositions,distance_travelled,E] = move_agents(agentPositions,...
         % Pass in Length of Arena and Partitions
         agentPositions(i,1) = agentPositions(i,1) + delta_x;
         agentPositions(i,2) = agentPositions(i,2) + delta_y;
+        %ADDED
+        %if Mass(i) < 10
+        %   agentPositions(i,1) = 25;
+        %   agentPositions(i,2) = 25;
+        %end
         E(i) = E(i) - ((1/2)*m*(delta_x^2+delta_y^2)*(1/time_unit^2)*space_unit)/energy_of_agents; % Decreasing energy of agents after they move
     end
     
-    distance_travelled = horzcat(distance_travelled, total_distance);
+    % distance_travelled = horzcat(distance_travelled, total_distance);
     % HI THIS IS ANASTASIA TESTING COMMENT GIT
     % HI ANASTASIA, THIS IS BRYAN. I HAVE NOTHING RELEVANT TO ADD TO THIS
     % COMMENT
