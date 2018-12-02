@@ -1,4 +1,5 @@
-function [ agentPoints ] = assign_points( agentPositions, coms, sides, partitionNumber,r_o,algorithm_type,E )
+function [ agentPoints ] = assign_points( agentPositions, coms, sides,...
+    partitionNumber,r_o,algorithm_type,E )
     % Assigns the points that can be seen by the agents to their closest
     % agents. These points are added to agentPoints, a 1xn cell array, where
     % the ith cell is an rx2 matrix containing the ith agent's points.
